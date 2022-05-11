@@ -1,19 +1,53 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Document</title>
     <link rel="manifest" href="./manifest.json">
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <script>
-        if("serviceWorker" in navigator){
+        if ("serviceWorker" in navigator) {
             navigator.serviceWorker.register("sw.js");
         }
     </script>
 </head>
+
 <body>
-    <input type="text" name="" id="">
+    <div id="app" class="p-5">
+        <div class="row">
+            <div class="col-md-2 mb-3">
+                <label class="form-label">Grupos de:</label>
+                <input v-model="grupo" class="form-control" @keyup="updateData()">
+            </div>
+
+            <div class="col-md-2">
+                <label class="form-label">Numero:</label>
+                <input v-model="numero" class="form-control" @change="setNumber">
+            </div>
+
+            <div class="col-12">
+                {{numeros.join(", ")}}
+            </div>
+
+            <div class="card text-center col-12">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item p-1 d-flex justify-content-between align-items-center" v-for="num in lista">
+                        <span v-for="item in num" class="rounded p-2 bg-primary text-white">
+                            {{item}}
+                        </span>
+                        <button @click="copiar(num)" type="button" class="rounded-circle btn btn-outline-success">CP</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
+<script src="./jquery-3.6.0.min.js"></script>
+<script src="./vue.js"></script>
+<script src="./script.js"></script>
