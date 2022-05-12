@@ -21,13 +21,26 @@
         <div class="row">
             <div class="col-md-2 mb-3">
                 <label class="form-label">Grupos de:</label>
-                <input v-model="grupo" class="form-control" @keyup="updateData()">
+                <input v-model="grupo" class="form-control rounded-pill" @keyup="updateData()">
+            </div>
+
+            <div class="col-md-2 mb-3">
+                <label class="form-label">Combinaciones: </label>
+                <input v-model="combinaciones" class="form-control rounded-pill" @keyup="updateData()">
             </div>
 
             <div class="col-md-2">
                 <label class="form-label">Numero:</label>
-                <input v-model="numero" class="form-control" @change="setNumber">
+                <input v-model="numero" class="form-control rounded-pill" @change="setNumber" maxlength="3">
+                <button v-if="numero" type="button" class="btn btn-primary rounded-circle" @click="setNumber" style="position: absolute;right: 15px;top: 32px;">
+                    +
+                </button>
+                <button v-else type="button" class="btn btn-warning rounded-circle" @click="updateData()" style="position: absolute;right: 15px;top: 32px;">
+                    O
+                </button>
             </div>
+
+
 
             <div class="col-12 mb-2 mt-2">
                 {{numeros.join(", ")}}
@@ -39,7 +52,7 @@
                         <span v-for="item in num" class="rounded p-2 bg-primary text-white">
                             {{item}}
                         </span>
-                        <button @click="copiar(num)" type="button" class="rounded-circle btn btn-outline-success">CP</button>
+                        <button @click="copiar(num)" type="button" class="rounded btn btn-outline-success">Copiar</button>
                     </li>
                 </ul>
             </div>
